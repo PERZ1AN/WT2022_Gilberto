@@ -141,7 +141,7 @@ header a {
   <p>Newest Additions</p>
   <div class="moviegrid">
     {% for img in imggrid %}
-    <img src="{{url_for('static', filename=('images/{}'.format(img[0])))}}">
+    <a href="{{ 'movies/id={}'.format(img[1]) }}"><img src="{{url_for('static', filename=('images/{}'.format(img[0])))}}"></a>
     {% endfor %}
     <!--<img src="{{url_for('static', filename='/images/bp.jfif')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">

@@ -24,7 +24,7 @@ mysql = MySQL(app)
 
 def ret_movies():
     cursor = mysql.connection.cursor()
-    cursor.execute('SELECT cover FROM movies')
+    cursor.execute('SELECT cover,id FROM movies')
     movies = cursor.fetchall()
     imggrid = movies
     print(imggrid)
@@ -79,3 +79,11 @@ def logout():
     session.pop('email')
     session.pop('username')
     return redirect(url_for('homepage'))
+
+@app.route('/movies/<id>')
+def movie(id):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM movies WHERE {}'.format(id))
+    movie = cursor.fetchone()
+    print(movie)
+    return render_template('moviepage.html', movie = movie)
