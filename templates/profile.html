@@ -72,7 +72,8 @@ header a {
 .mainpage p{
   font-size:50px;
   font-weight: bold;
-  text-align: center;
+  padding-left: 100px;
+  justify-content: left;
 }
 
 .container p{
@@ -95,10 +96,10 @@ header a {
 
 
 .container {
-    margin: auto;
+    margin-left: 200px;
     width: 20%;
     display: vbox;
-    justify-content: center;
+    justify-content: left;
 }
 
 button {
@@ -106,11 +107,21 @@ button {
     color: white;
     border-width: 2px;
     border-radius: 10px;
-    width: 100%;
-    height: 30px;
+    width: 100px;
+    height: 25px;
+    float: right;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+.profline {
+    font-size: 25px;
+    text-justify:left;
+    margin: 20px 0;
+}
+
+.profline .st {
+    font-weight: bold;
+}
+
 @media (max-width: 600px) {
   nav, article {
     width: 100%;
@@ -137,20 +148,21 @@ button {
 </header>
 
 <div class="mainpage">
-  <p>Login</p>
-  <div class="loginform">
-    <form method="post">
-        <div class="container">
-          <input class="allinput" type="email" placeholder="Email" name="email" required>
-          <input class="last" type="password" placeholder="Password" name="psw" required>
-      
-          
-          <p>Don't have an account? <a href="home">Sign up now!</a></p>
-          <button type="submit">Login</button>
-        </div>
-  
-        </div>
-      </form>
+  <p>User Profile</p>
+  <div class="container">
+    
+    <div class="profline">
+        <text class="st">Username: </text><text class="it">{{ account['username'] }}</text><button type="menu">Change</button>
+    </div>
+    <div class="profline">
+        <text class="st">Email: </text><text>{{ account['email'] }}</text><button type="menu">Change</button>
+    </div>
+    <div class="profline">
+        <text class="st">Password: </text><text>*******</text><button type="menu">Change</button>
+    </div>
+    <form method="get" action="/logout">  
+        <button type="submit" style="width:100%;margin:20px 0">Logout</button>  
+    </form> 
   </div>
 </div>
 

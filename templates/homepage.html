@@ -109,7 +109,7 @@ header a {
 .mainpage p{
   font-size:50px;
   font-weight: bold;
-  padding-left: 50px;
+  padding-left: 100px;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
@@ -124,11 +124,11 @@ header a {
 <body>
 <header>
   <text style="padding: 0 20px;float: left">Movie Rental</text>
-  <text class="headermenu">Home</text>
+  <a href="home" class="headermenu">Home</a>
   <text class="headermenu">Library</text>
   <text class="navmenu">PPH</text>
   {% if account %}
-  <a href="login" class="navmenu">{{ account['username'] }}</a>
+  <a href="profile" class="navmenu">{{ account['username'] }}</a>
   {% else %}
   <a href="login" class="navmenu">Login</a>
   {% endif %}
@@ -140,6 +140,10 @@ header a {
 <div class="mainpage">
   <p>Newest Additions</p>
   <div class="moviegrid">
+    {% for img in imggrid %}
+    <img src="{{url_for('static', filename=('images/{}'.format(img[0])))}}">
+    {% endfor %}
+    <!--<img src="{{url_for('static', filename='/images/bp.jfif')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
@@ -160,8 +164,7 @@ header a {
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
     <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
-    <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
-    <img src="{{url_for('static', filename='/images/movieph.jpg')}}">
+    <img src="{{url_for('static', filename='/images/movieph.jpg')}}"> -->
   </div>
 </div>
 
