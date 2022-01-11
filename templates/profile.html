@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
+<title>WT</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -116,6 +116,7 @@ button {
     font-size: 25px;
     text-justify:left;
     margin: 20px 0;
+    width:100%
 }
 
 .profline .st {
@@ -163,6 +164,14 @@ button {
     <form method="get" action="/logout">  
         <button type="submit" style="width:100%;margin:20px 0">Logout</button>  
     </form> 
+  </div>
+  <p>Active Rentals</p>
+  <div class="container">
+    {% for movie in actives %}
+    <div class="profline">
+      <text class="st">{{  movie[0]  }}: </text><text class="it">Due on: {{ movie[1] }}</text>
+    </div>
+    {% endfor %}
   </div>
 </div>
 

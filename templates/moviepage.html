@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
+<title>WT</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -62,11 +62,11 @@ header a {
   justify-content: center;
 }
 
-.moviegrid img{
+.cover{
   float: center;
-  height:300px;
-  width:220px;
-  margin: 50px 30px;
+  height:600px;
+  width:440px;
+  float: left;
 }
 
 .mainpage p{
@@ -97,8 +97,9 @@ header a {
 
 .container {
     margin-left: 200px;
-    width: 20%;
-    display: vbox;
+    margin-right:0px;
+    width: calc(100% - margin-left);
+    display: flex;
     justify-content: left;
 }
 
@@ -122,6 +123,7 @@ button {
     font-weight: bold;
 }
 
+
 @media (max-width: 600px) {
   nav, article {
     width: 100%;
@@ -138,9 +140,9 @@ button {
   <text class="headermenu">Library</text>
   <text class="navmenu">PPH</text>
   {% if account %}
-  <a href="profile" class="navmenu">{{ account['username'] }}</a>
+  <a href="/profile" class="navmenu">{{ account['username'] }}</a>
   {% else %}
-  <a href="login" class="navmenu">Login</a>
+  <a href="/login" class="navmenu">Login</a>
   {% endif %}
   <text class="navmenu">Settings</text>
   <text class="navmenu">Cart</text>
@@ -150,7 +152,13 @@ button {
 <div class="mainpage">
   <p>{{  movie['name']  }}</p> 
   <div class="container">
-    
+    <img class="cover" src="{{url_for('static', filename=('images/{}'.format(movie['cover'])))}}">
+    <div class="infobox">
+      <p><text class="profline">Duration: {{  movie['duration']  }} minutes</text></p>
+      <form method="post" action="rent/{{  movie['id']  }}">  
+        <button type="submit" style="width:200px;margin:20px 100px;float:left;">Rent</button>  
+      </form>
+    </div>
   </div>
 </div>
 
